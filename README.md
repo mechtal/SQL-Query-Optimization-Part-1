@@ -3,6 +3,8 @@
 ```sql
 CREATE DATABASE HOUSE
 go
+USE HOUSE
+go
 CREATE TABLE [dbo].[DISEASE](
     [disease_class_id] [int] NULL,
     [disease_number] [int] NULL,
