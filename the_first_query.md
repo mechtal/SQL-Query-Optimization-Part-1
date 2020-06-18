@@ -25,5 +25,9 @@ alter table DIAGNOSIS alter column patient_id int not NULL
 
 alter table DIAGNOSIS add CONSTRAINT FK_dbo_DIAGNOSIS_patient_id FOREIGN key (patient_id)
 REFERENCES PATIENT(patient_id)
+
+alter table DIAGNOSIS alter column diagnosis_id int not null
+
+alter table DIAGNOSIS add CONSTRAINT PK_dbo_DIAGNOSIS_diagnosis_id PRIMARY key (diagnosis_id)
 ```
-![image](https://github.com/mechtal/plans/blob/master/DIAG_PATIENT_result.png?raw=true)
+![image](https://github.com/mechtal/plans/blob/master/DIAG_PATIENT_res.png?raw=true)
