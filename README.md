@@ -50,5 +50,3 @@ SET STATISTICS XML OFF
 ------------------------------------------
 ```
 ![image](https://github.com/mechtal/plans/blob/master/Query_main.png?raw=true)
-
-the_first_query.md
