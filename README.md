@@ -31,4 +31,22 @@ CREATE TABLE [dbo].[PATIENT](
     [patient_id] [int] NULL,
     [patient_name] [varchar](100) NULL)
 ```
-![image](https://github.com/mechtal/plans/blob/master/Query1.png?raw=true)
+### Optimize the query
+```sql
+------------------------------------------
+SET STATISTICS XML ON
+------------------------------------------
+declare @hospital_id int = 5
+
+select count(*)
+from DIAGNOSIS as d
+    inner join PATIENT as p on p.patient_id = d.patient_id
+    inner join DISEASE as ds ON ds.disease_class_id = d.disease_class_id and ds.disease_number = d.disease_number
+    inner join DIAGNOSIS_DOCTOR as dd on dd.diagnosis_id = d.diagnosis_id and dd.is_responsible = 1
+    inner join DOCTOR as dct on dd.doctor_id = dct.doctor_id 
+where hospital_id = @hospital_id
+------------------------------------------
+SET STATISTICS XML OFF
+------------------------------------------
+```
+![image](https://github.com/mechtal/plans/blob/master/Query_main.png?raw=true)
