@@ -49,3 +49,6 @@ SET STATISTICS XML OFF
 ------------------------------------------
 ```
 ![image](https://github.com/mechtal/plans/blob/master/Query_main.png?raw=true)
+
+## The result
+![image](https://github.com/mechtal/plans/blob/master/Query_main_res.png?raw=true)
