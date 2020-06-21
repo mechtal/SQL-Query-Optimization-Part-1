@@ -52,8 +52,65 @@ SET STATISTICS XML OFF
 ------------------------------------------
 ```
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res2.png?raw=true)
-=> The server is not sure that we have only one responsible doctor.
+=> The server is not sure that we have only one responsible doctor, because the server doesn't use the uniqueness of the 
+filtered index for the optimization.
 ```sql
 drop INDEX fix1_diagnosis_doctor on DIAGNOSIS_DOCTOR
 ```
+#### The third
+```sql
+create view dbo.v_responsible_doctors
+with SCHEMABINDING AS
+select diagnosis_id, doctor_id
+from dbo.DIAGNOSIS_DOCTOR 
+where is_responsible = 1
+
+CREATE UNIQUE CLUSTERED index ix 
+on v_responsible_doctors
+(diagnosis_id)
+```
+![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res3.png?raw=true)
+Выигрываем на select, но проигрываем на insert, delete, update, так как меняем еще один объект.
+#### The fourth
+```sql
+------------------------------------------
+SET STATISTICS XML ON
+------------------------------------------
+declare @hospital_id int = 5
+select count(*)
+from DIAGNOSIS as d
+left join (
+  select dd.diagnosis_id, min(dd.doctor_id) as doctor_id 
+  from DIAGNOSIS_DOCTOR as dd
+  where is_responsible = 1
+  GROUP by diagnosis_id) as dd
+on dd.diagnosis_id = d.diagnosis_id
+where hospital_id = @hospital_id
+------------------------------------------
+SET STATISTICS XML OFF
+------------------------------------------
+```
+![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res4.png?raw=true)
+#### The fifth
+```sql
+------------------------------------------
+SET STATISTICS XML ON
+------------------------------------------
+declare @hospital_id int = 5
+select count(*)
+from DIAGNOSIS as d
+left join (
+  select dd.diagnosis_id, min(dd.doctor_id) as doctor_id 
+  from DIAGNOSIS_DOCTOR as dd
+  where is_responsible = 1
+  GROUP by diagnosis_id) as dd
+on dd.diagnosis_id = d.diagnosis_id
+where hospital_id = @hospital_id
+------------------------------------------
+SET STATISTICS XML OFF
+------------------------------------------
+```
+![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res5.png?raw=true)
+
+
 
