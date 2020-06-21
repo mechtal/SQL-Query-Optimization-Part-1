@@ -70,6 +70,9 @@ on v_responsible_doctors
 (diagnosis_id)
 ```
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res3.png?raw=true)
+```sql
+drop view v_responsible_doctors
+```
 #### The fourth
 ```sql
 ------------------------------------------
