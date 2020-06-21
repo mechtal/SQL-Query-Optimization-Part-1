@@ -21,7 +21,7 @@ The common step
 alter table DIAGNOSIS_DOCTOR alter column diagnosis_doctor_id int not null
 alter table DIAGNOSIS_DOCTOR add CONSTRAINT PK_dbo_DIAGNOSIS_DOCTOR_diagnosis_doctor_id PRIMARY KEY (diagnosis_doctor_id)
 ```
-#### The first
+#### The first ❌
 ```
 alter table DIAGNOSIS_DOCTOR add CONSTRAINT FK_dbo_DOAGNOSIS_DOCTOR_diagnosis_id FOREIGN KEY (diagnosis_id) REFERENCES DIAGNOSIS(diagnosis_id)
 ```
@@ -30,7 +30,7 @@ alter table DIAGNOSIS_DOCTOR add CONSTRAINT FK_dbo_DOAGNOSIS_DOCTOR_diagnosis_id
 ```sql
 alter table DIAGNOSIS_DOCTOR drop CONSTRAINT FK_dbo_DOAGNOSIS_DOCTOR_diagnosis_id
 ```
-#### The second
+#### The second ❌
 ```sql
 create unique NONCLUSTERED index fix1_diagnosis_doctor
 on diagnosis_doctor
@@ -57,7 +57,7 @@ filtered index for the optimization.
 ```sql
 drop INDEX fix1_diagnosis_doctor on DIAGNOSIS_DOCTOR
 ```
-#### The third
+#### The third ❌
 ```sql
 create view dbo.v_responsible_doctors
 with SCHEMABINDING AS
@@ -73,7 +73,7 @@ on v_responsible_doctors
 ```sql
 drop view v_responsible_doctors
 ```
-#### The fourth
+#### The fourth ✅
 ```sql
 ------------------------------------------
 SET STATISTICS XML ON
@@ -93,7 +93,7 @@ SET STATISTICS XML OFF
 ------------------------------------------
 ```
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res4.png?raw=true)
-#### The fifth
+#### The fifth ✅
 ```sql
 ------------------------------------------
 SET STATISTICS XML ON
