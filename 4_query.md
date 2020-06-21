@@ -13,6 +13,9 @@ alter table DIAGNOSIS_DOCTOR alter column doctor_id int not null
 alter table DIAGNOSIS_DOCTOR add CONSTRAINT FK_dbo_DIAGNOSIS_DOCTOR foreign key (doctor_id)
 REFERENCES DOCTOR(doctor_id)
 
+inner join -> left join
+```
+```sql
 select count(*)
 from DIAGNOSIS as d
     inner join PATIENT as p on p.patient_id = d.patient_id
