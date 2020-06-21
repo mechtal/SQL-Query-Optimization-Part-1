@@ -70,7 +70,6 @@ on v_responsible_doctors
 (diagnosis_id)
 ```
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res3.png?raw=true)
-Выигрываем на select, но проигрываем на insert, delete, update, так как меняем еще один объект.
 #### The fourth
 ```sql
 ------------------------------------------
