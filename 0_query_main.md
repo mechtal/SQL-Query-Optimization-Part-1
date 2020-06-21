@@ -1,4 +1,3 @@
-# plans
 ### Create the database *HOUSE*
 ```sql
 CREATE DATABASE HOUSE
