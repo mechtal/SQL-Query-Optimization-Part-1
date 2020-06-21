@@ -7,13 +7,13 @@ DIAGNOSIS_DOCTOR and DOCTOR
 ### The solution
 ```sql
 alter table DOCTOR alter COLUMN doctor_id int not null
-alter table DOCTOR add CONSTRAINT PK_dbo_DOCTOR_doctor_id PRIMARY key (doctor_id)
+alter table DOCTOR add CONSTRAINT PK_dbo_DOCTOR_doctor_id primary key (doctor_id)
 
 alter table DIAGNOSIS_DOCTOR alter column doctor_id int not null
 alter table DIAGNOSIS_DOCTOR add CONSTRAINT FK_dbo_DIAGNOSIS_DOCTOR foreign key (doctor_id)
 REFERENCES DOCTOR(doctor_id)
 
-inner join -> left join
+-- inner join -> left join
 ```
 ```sql
 select count(*)
