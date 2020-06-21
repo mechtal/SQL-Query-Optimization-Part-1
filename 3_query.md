@@ -14,6 +14,7 @@ SET STATISTICS XML OFF
 ------------------------------------------
 ```
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT.png?raw=true)
+*We want to explain to the server that the count of rows DIAGNOSIS + DIAGNOSIS_DOCTOR (is_responsible = 1) equals the count of rows DIAGNOSIS.*
 
 ### The solution
 The common step
@@ -69,6 +70,7 @@ CREATE UNIQUE CLUSTERED index ix
 on v_responsible_doctors
 (diagnosis_id)
 ```
+We win on *select*, but we lose on *insert, delete, update*, because we change one more object.
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT_res3.png?raw=true)
 ```sql
 drop view v_responsible_doctors
