@@ -2,7 +2,7 @@
 ```sql
 DIAGNOSIS_DOCTOR and DOCTOR
 ```
-![image](https://github.com/mechtal/plans/blob/master/DIAG_DIAG_DOCT.png?raw=true)
+![image](https://github.com/mechtal/plans/blob/master/DIAG_DOCT_DOCT.png?raw=true)
 
 ### The solution
 ```sql
@@ -24,3 +24,4 @@ from DIAGNOSIS as d
     left join DOCTOR as dct on dd.doctor_id = dct.doctor_id 
 where hospital_id = @hospital_id
 ```
+![image](https://github.com/mechtal/plans/blob/master/Query_main_res.png?raw=true)
