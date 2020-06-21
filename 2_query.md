@@ -30,7 +30,8 @@ REFERENCES DISEASE(disease_class_id, disease_number)
 ```
 ![image](https://github.com/mechtal/plans/blob/master/DIAG_DISEAS_res1.png?raw=true)
 SQL Server doesn't use a multicolumn foreign key for an optimization. :(
-But the Foreign Key protects us.
+
+But the Foreign Key will protect us if we change inner join -> left join.
 ```sql
 -- inner join -> left join
 ------------------------------------------
