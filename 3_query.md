@@ -103,12 +103,11 @@ SET STATISTICS XML ON
 declare @hospital_id int = 5
 select count(*)
 from DIAGNOSIS as d
-left join (
-  select dd.diagnosis_id, min(dd.doctor_id) as doctor_id 
+outer apply (
+  select top 1 dd.diagnosis_id, dd.doctor_id
   from DIAGNOSIS_DOCTOR as dd
   where is_responsible = 1
-  GROUP by diagnosis_id) as dd
-on dd.diagnosis_id = d.diagnosis_id
+  and dd.diagnosis_id = d.diagnosis_id) as dd
 where hospital_id = @hospital_id
 ------------------------------------------
 SET STATISTICS XML OFF
